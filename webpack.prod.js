@@ -9,7 +9,7 @@ module.exports = [
   merge(common, {
     entry: {
       listUi: [
-        path.resolve(__dirname, "src/js/listUi.js"),
+        path.resolve(__dirname, "src/js/listUis/carouselListUi.js"),
         "./src/assets/sass/main.scss",
       ],
     },
@@ -22,7 +22,7 @@ module.exports = [
   merge(common, {
     entry: {
       "listUi.min": [
-        path.resolve(__dirname, "src/js/listUi.js"),
+        path.resolve(__dirname, "src/js/listUis/carouselListUi.js"),
         "./src/assets/sass/main.scss",
       ],
     },
