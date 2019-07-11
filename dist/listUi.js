@@ -104,11 +104,45 @@ module.exports = __webpack_require__(2);
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-const a = 12;
-const b = 13;
-console.log(a, b);
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CarouselListUi", function() { return CarouselListUi; });
+class CarouselListUi {
+  constructor({
+    targetElement,
+    data,
+    style
+  }) {
+    Object.assign(this, {
+      targetElement,
+      data,
+      style
+    });
+  }
+
+  render() {
+    this.container = document.querySelector(this.targetElement);
+    this.addContentList();
+  }
+
+  addContentList() {
+    this.data.title.forEach((v, i) => {
+      this.container.innerHTML += `
+      <a href="${this.data.link[i]}"
+        <div class="h-list${i}">
+          <img src="${this.data.thumbnail[i]}"
+          <div class="h-list-title${i}>${this.data.title}</div>
+          <div class="h-list-desc${i}>${this.data.description[i]}</div>
+        <div>
+      </a>`;
+    });
+  }
+
+}
+
+
 
 /***/ }),
 /* 2 */
