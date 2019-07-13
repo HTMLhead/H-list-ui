@@ -1,0 +1,23 @@
+.h-list {
+  display: inline-block;
+  width: 200px;
+  height: 300px;
+  margin-right: 20px;
+
+  &-image {
+    display: block;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  &-title {
+    word-break: break-all;
+    font-size: 10px;
+    font-weight: bold;
+  }
+
+  &-desc {
+    word-break: break-all;
+  }
+}
