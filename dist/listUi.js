@@ -109,38 +109,53 @@ module.exports = __webpack_require__(2);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CarouselListUi", function() { return CarouselListUi; });
-class CarouselListUi {
-  constructor({
-    targetElement,
-    data,
-    style
-  }) {
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var CarouselListUi =
+/*#__PURE__*/
+function () {
+  function CarouselListUi(_ref) {
+    var containerEl = _ref.containerEl,
+        data = _ref.data,
+        style = _ref.style;
+
+    _classCallCheck(this, CarouselListUi);
+
     Object.assign(this, {
-      targetElement,
-      data,
-      style
+      containerEl: containerEl,
+      data: data,
+      style: style
     });
   }
 
-  render() {
-    this.container = document.querySelector(this.targetElement);
-    this.addContentList();
-  }
+  _createClass(CarouselListUi, [{
+    key: "render",
+    value: function render() {
+      this.container = document.querySelector(this.containerEl);
+      this.container.style.width = "".concat(this.style.width, "px");
+      this.container.style.height = "".concat(this.style.height, "px");
+      this.container.style.overflow = "hidden";
+      this.container.innerHTML += this.addContentList();
+    }
+  }, {
+    key: "addContentList",
+    value: function addContentList() {
+      var _this = this;
 
-  addContentList() {
-    this.data.title.forEach((v, i) => {
-      this.container.innerHTML += `
-      <a href="${this.data.link[i]}"
-        <div class="h-list${i}">
-          <img src="${this.data.thumbnail[i]}"
-          <div class="h-list-title${i}>${this.data.title}</div>
-          <div class="h-list-desc${i}>${this.data.description[i]}</div>
-        <div>
-      </a>`;
-    });
-  }
+      var contentDom = "";
+      this.data.title.forEach(function (v, i) {
+        contentDom += "\n      <a href=\"".concat(_this.data.link[i], "\">\n        <div class=\"h-list\">\n          <img class=\"h-list-image\" src=\"").concat(_this.data.thumbnail[i], "\">\n          <div class=\"h-list-title\">").concat(_this.data.title[i], "</div>\n          <div class=\"h-list-desc\">").concat(_this.data.description[i], "</div>\n        </div>\n      </a>");
+      });
+      return contentDom;
+    }
+  }]);
 
-}
+  return CarouselListUi;
+}();
 
 
 

@@ -127,3 +127,20 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
+.h-list {
+  display: inline-block;
+  width: 200px;
+  height: 300px;
+  margin-right: 20px; }
+  .h-list-image {
+    display: block;
+    width: 200px;
+    height: 200px;
+    object-fit: cover; }
+  .h-list-title {
+    word-break: break-all;
+    font-size: 10px;
+    font-weight: bold; }
+  .h-list-desc {
+    word-break: break-all; }
+
