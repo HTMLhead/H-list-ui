@@ -3,7 +3,7 @@ import { listUi } from "./listUis/listUi.js";
 document.addEventListener("DOMContentLoaded", () => {
   listUi.createList({
     type: "typeA",
-    containerEl: ".h-list",
+    containerEl: ".h-list-container",
     data: {
       title: ["naver", "codesquad", "mrdoo309"],
       description: ["best Of green", "title of code academy", "dude"],
@@ -15,8 +15,8 @@ document.addEventListener("DOMContentLoaded", () => {
       ],
     },
     style: {
-      width: "600",
-      height: "200",
+      width: "800",
+      height: "300",
     },
   });
 });
