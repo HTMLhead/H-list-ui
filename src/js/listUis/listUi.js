@@ -3,18 +3,18 @@ import _h from "../utils/helper.js";
 import { CarouselListUi } from "./carouselListUi.js";
 
 const listUi = {
-  createList({ type, containerEl, data, style }) {
+  createList({ type, domElement, data, style }) {
     switch (type) {
       case "typeA":
-        this.makeCarouselUi({ containerEl, data, style });
+        this.makeCarouselUi({ domElement, data, style });
         break;
       case "typeB":
-        this.makeGridUi({ containerEl, data, style });
+        this.makeGridUi({ domElement, data, style });
         break;
     }
   },
-  makeCarouselUi({ containerEl, data, style }) {
-    const carouselListUi = new CarouselListUi({ containerEl, data, style });
+  makeCarouselUi({ domElement, data, style }) {
+    const carouselListUi = new CarouselListUi({ domElement, data, style });
     carouselListUi.render();
   },
 };
