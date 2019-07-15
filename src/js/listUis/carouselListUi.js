@@ -1,6 +1,10 @@
 class CarouselListUi {
-  constructor({ containerEl, data, style }) {
-    Object.assign(this, { containerEl, data, style });
+  constructor({ domElement, data, style }) {
+    Object.assign(this, { domElement, data, style });
+    this.contentIndex = 0;
+    this.overContentIndex = 0;
+    this.link = data.linkArr[this.contentIndex];
+    this.wholeWidth = this.style.content.width * (this.data.titleArr.length + 1);
   }
 
   render() {
