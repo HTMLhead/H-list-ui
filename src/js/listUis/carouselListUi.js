@@ -121,13 +121,17 @@ class CarouselListUi {
 
   addContentList() {
     let contentDom = "";
-    this.data.title.forEach((v, i) => {
+    this.data.titleArr.forEach((v, i) => {
       contentDom += `
-      <a href="${this.data.link[i]}">
-        <div class="h-list">
-          <img class="h-list-image" src="${this.data.thumbnail[i]}">
-          <div class="h-list-title">${this.data.title[i]}</div>
-          <div class="h-list-desc">${this.data.description[i]}</div>
+      <a href="${this.data.linkArr[i]}" style="margin:10px">
+        <div class="h-list" style="width:${this.style.content.width}px; height:${
+        this.style.content.height
+      }px;">
+          <img style="width:${this.style.content.width}px; height:${
+        this.style.content.width
+      }px;"src="${this.data.thumbnailArr[i]}">
+          <div class="h-list-title">${this.data.titleArr[i]}</div>
+          <div class="h-list-desc">${this.data.descriptionArr[i]}</div>
         </div>
       </a>`;
     });

@@ -1,13 +1,6 @@
 .h-list {
-  display: inline-block;
-  width: 200px;
-  height: 300px;
-  margin-right: 20px;
-
   &-image {
     display: block;
-    width: 200px;
-    height: 200px;
     object-fit: cover;
   }
 
