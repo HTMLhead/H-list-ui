@@ -119,36 +119,163 @@ var CarouselListUi =
 /*#__PURE__*/
 function () {
   function CarouselListUi(_ref) {
-    var containerEl = _ref.containerEl,
+    var domElement = _ref.domElement,
         data = _ref.data,
         style = _ref.style;
 
     _classCallCheck(this, CarouselListUi);
 
     Object.assign(this, {
-      containerEl: containerEl,
+      domElement: domElement,
       data: data,
       style: style
     });
+    this.contentIndex = 0;
+    this.overContentIndex = 0;
+    this.link = data.linkArr[this.contentIndex];
+    this.wholeWidth = this.style.content.width * (this.data.titleArr.length + 1);
   }
 
   _createClass(CarouselListUi, [{
     key: "render",
     value: function render() {
-      this.container = document.querySelector(this.containerEl);
-      this.container.style.width = "".concat(this.style.width, "px");
-      this.container.style.height = "".concat(this.style.height, "px");
-      this.container.style.overflow = "hidden";
-      this.container.innerHTML += this.addContentList();
+      var container = document.querySelector(this.domElement);
+      container.appendChild(this.addLayout());
+      container.appendChild(this.addSelector());
+      var layout = document.querySelector(".h-list-layout");
+      this.addContainerStyle(container);
+      this.addLayoutStyle(layout);
+      this.addLayoutEvent(layout);
+      layout.innerHTML += this.addContentList();
+    }
+  }, {
+    key: "addLayout",
+    value: function addLayout() {
+      var selector = document.createElement("div");
+      selector.className = "h-list-layout";
+      selector.tabIndex = 0;
+      return selector;
+    }
+  }, {
+    key: "addSelector",
+    value: function addSelector() {
+      var selector = document.createElement("div");
+      selector.style.width = "".concat(Number(this.style.content.width) + 20, "px");
+      selector.style.height = "".concat(Number(this.style.content.height) + 20, "px");
+      selector.style.position = "absolute";
+      selector.style.top = "0";
+      selector.style.backgroundColor = "#008000";
+      selector.style.opacity = "0.5";
+      selector.className = "h-list-selector";
+      return selector;
+    }
+  }, {
+    key: "moveSelector",
+    value: function moveSelector(transformSize) {
+      var selector = document.querySelector(".h-list-selector");
+      this.link = this.data.linkArr[this.contentIndex + this.overContentIndex];
+      selector.style.transform = "translateX(".concat(transformSize, "px)");
+      return selector.style.transform;
+    }
+  }, {
+    key: "goLink",
+    value: function goLink() {
+      window.location.href = this.link;
+    }
+  }, {
+    key: "addContainerStyle",
+    value: function addContainerStyle(element) {
+      element.style.width = "".concat(this.style.container.width, "px");
+      element.style.height = "".concat(this.style.container.height, "px");
+      element.style.position = "relative";
+      element.style.overflow = "hidden";
+      return element;
+    }
+  }, {
+    key: "addLayoutStyle",
+    value: function addLayoutStyle(element) {
+      element.style.display = "flex";
+      element.style.outline = "none";
+      element.style.width = "".concat(this.wholeWidth, "px");
+      return element;
+    }
+  }, {
+    key: "addLayoutEvent",
+    value: function addLayoutEvent(element) {
+      var _this = this;
+
+      var contentWidth = this.style.content.width;
+      var containerWidth = this.style.container.width;
+      var wholeWidth = this.wholeWidth;
+      element.addEventListener("keydown", function (e) {
+        return _this.moveElement(e, element, contentWidth, containerWidth, wholeWidth);
+      });
+    }
+  }, {
+    key: "moveElement",
+    value: function moveElement(e, element, contentWidth, containerWidth, wholeWidth) {
+      if (e.key === "ArrowRight") {
+        this.changeLayoutRight(element, contentWidth, containerWidth, wholeWidth);
+      } else if (e.key === "ArrowLeft") {
+        this.changeLayoutLeft(element, contentWidth, containerWidth, wholeWidth);
+      } else if (e.key === "Enter") {
+        this.goLink();
+      }
+    }
+  }, {
+    key: "changeLayoutLeft",
+    value: function changeLayoutLeft(element, contentWidth, containerWidth, wholeWidth) {
+      var originSize = Number(element.style.transform.replace(/[^0-9-]/g, ""));
+      var contentWidthSize = Number(contentWidth);
+
+      if (originSize >= 0) {
+        return;
+      }
+
+      if (Math.abs(originSize) > wholeWidth - containerWidth && this.overContentIndex > 0) {
+        this.overContentIndex--;
+        this.moveSelector((contentWidthSize + 20) * this.overContentIndex);
+        return;
+      }
+
+      this.contentIndex--;
+      this.link = this.data.linkArr[this.contentIndex];
+      element.style.transform = "translateX(".concat(originSize + contentWidthSize + 20, "px)");
+    }
+  }, {
+    key: "changeLayoutRight",
+    value: function changeLayoutRight(element, contentWidth, containerWidth, wholeWidth) {
+      var originSize = Number(element.style.transform.replace(/[^0-9-]/g, ""));
+      var contentWidthSize = Number(contentWidth);
+
+      if (Math.abs(originSize) > wholeWidth - containerWidth) {
+        this.selectorMoveChecker(contentWidthSize, containerWidth);
+        return;
+      }
+
+      this.contentIndex++;
+      this.link = this.data.linkArr[this.contentIndex];
+      element.style.transform = "translateX(".concat(originSize - contentWidthSize - 20, "px)");
+    }
+  }, {
+    key: "selectorMoveChecker",
+    value: function selectorMoveChecker(contentWidth, containerWidth) {
+      if ((contentWidth + 20) * (this.overContentIndex + 1) > containerWidth - contentWidth) {
+        return;
+      }
+
+      this.overContentIndex++;
+      this.moveSelector((contentWidth + 20) * this.overContentIndex);
+      return;
     }
   }, {
     key: "addContentList",
     value: function addContentList() {
-      var _this = this;
+      var _this2 = this;
 
       var contentDom = "";
-      this.data.title.forEach(function (v, i) {
-        contentDom += "\n      <a href=\"".concat(_this.data.link[i], "\">\n        <div class=\"h-list\">\n          <img class=\"h-list-image\" src=\"").concat(_this.data.thumbnail[i], "\">\n          <div class=\"h-list-title\">").concat(_this.data.title[i], "</div>\n          <div class=\"h-list-desc\">").concat(_this.data.description[i], "</div>\n        </div>\n      </a>");
+      this.data.titleArr.forEach(function (v, i) {
+        contentDom += "\n      <a href=\"".concat(_this2.data.linkArr[i], "\" style=\"margin:10px\">\n        <div class=\"h-list\" style=\"width:").concat(_this2.style.content.width, "px; height:").concat(_this2.style.content.height, "px;\">\n          <img style=\"width:").concat(_this2.style.content.width, "px; height:").concat(_this2.style.content.width, "px;\"src=\"").concat(_this2.data.thumbnailArr[i], "\">\n          <div class=\"h-list-title\">").concat(_this2.data.titleArr[i], "</div>\n          <div class=\"h-list-desc\">").concat(_this2.data.descriptionArr[i], "</div>\n        </div>\n      </a>");
       });
       return contentDom;
     }
