@@ -21,7 +21,8 @@ class CarouselListUi {
   addLayout() {
     const selector = document.createElement("div");
     selector.className = "h-list-layout";
-    selector.tabIndex = 0;
+    window.tabIndex = 0;
+    selector.tabIndex = 1;
     return selector;
   }
 
@@ -34,6 +35,7 @@ class CarouselListUi {
     selector.style.backgroundColor = `#008000`;
     selector.style.opacity = `0.5`;
     selector.className = "h-list-selector";
+    selector.style.transition = `transform 0.1s linear`;
     return selector;
   }
 
@@ -59,6 +61,7 @@ class CarouselListUi {
   addLayoutStyle(element) {
     element.style.display = `flex`;
     element.style.outline = `none`;
+    element.style.transition = `transform 0.1s linear`;
     element.style.width = `${this.wholeWidth}px`;
     return element;
   }
