@@ -35,5 +35,22 @@ document.addEventListener("DOMContentLoaded", () => {
   listUi.createList({
     type: "typeB",
     domElement: ".h-list-grid-container",
+    data: {
+      titleArr: titleArray,
+      descriptionArr: descArray,
+      linkArr: linkArray,
+      thumbnailArr: thumbnailArray,
+    },
+    style: {
+      container: {
+        width: "700",
+        height: "700",
+        column: "3",
+      },
+      content: {
+        width: "200",
+        height: "300",
+      },
+    },
   });
 });
