@@ -25,10 +25,26 @@ class GridListUi {
   }
 
   addSelector() {
+    const selector = document.createElement("div");
+    selector.style.width = `${Number(this.style.content.width) + 20}px`;
+    selector.style.height = `${Number(this.style.content.height) + 20}px`;
+    selector.style.position = `absolute`;
+    selector.style.top = `0`;
+    selector.style.backgroundColor = `#008000`;
+    selector.style.opacity = `0.5`;
+    selector.className = "h-list-gird-selector";
+    selector.style.transition = `transform 0.1s linear`;
+    return selector;
     //selector생성 함수
   }
 
-  addContainerStyle() {
+  addContainerStyle(element) {
+    element.style.position = "relative";
+    element.style.display = "grid";
+    element.style.width = `${this.style.container.width}px`;
+    element.style.height = `${this.style.container.height}px`;
+    element.style.gridTemplateColumns = `repeat(${this.style.container.column},
+      ${Number(this.style.content.width) + 20}px)`;
     // container element에 Grid 속성을 추가 및 반응형 CSS style추가
   }
 
