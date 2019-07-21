@@ -5,19 +5,44 @@ class GridListUi {
   }
 
   render() {
-    let resizeId;
-    window.addEventListener("resize", function() {
-      clearTimeout(resizeId);
-      resizeId = setTimeout(doneResizing, 500);
-    });
-
-    function doneResizing() {
-      //설정한 인덱스 넘버 주어진 content width에 맞게 재설정 (아래로, 위로 눌렀을 때 추가될 index만큼)
-    }
+    // let resizeId;
+    // window.addEventListener("resize", function() {
+    //   clearTimeout(resizeId);
+    //   resizeId = setTimeout(doneResizing, 500);
+    // });
+    // function doneResizing() {
+    //   //설정한 인덱스 넘버 주어진 content width에 맞게 재설정 (아래로, 위로 눌렀을 때 추가될 index만큼)
+    // }
+    const container = document.querySelector(this.domElement);
+    container.innerHTML += this.addContentList();
+    container.appendChild(this.addSelector());
+    this.addContainerStyle(container);
+    this.addSelector();
+    // container.appendChild(this.addSelector());
   }
 
-  addLayout() {
-    // 큰 레이아웃 저장.
+  getResizeMedia() {
+    const mediaQueryString = `only screen and (min-device-width: 768px) and (max-device-width: 1024px)`;
+    window.matchMedia(mediaQueryString);
+  }
+  addContentList() {
+    let contentDom = "";
+    this.data.titleArr.forEach((v, i) => {
+      contentDom += `
+      <a href="${this.data.linkArr[i]}" style="margin:10px">
+        <div class="h-list" style="width:${this.style.content.width}px; height:${
+        this.style.content.height
+      }px;">
+          <img style="width:${this.style.content.width}px; height:${
+        this.style.content.width
+      }px;"src="${this.data.thumbnailArr[i]}">
+          <div>${this.data.titleArr[i]}</div>
+          <div>${this.data.descriptionArr[i]}</div>
+        </div>
+      </a>`;
+    });
+
+    return contentDom;
   }
 
   addSelectorEvent(element) {
