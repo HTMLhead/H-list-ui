@@ -278,7 +278,7 @@ function () {
 
       var contentDom = "";
       this.data.titleArr.forEach(function (v, i) {
-        contentDom += "\n      <a href=\"".concat(_this2.data.linkArr[i], "\" style=\"margin:10px\">\n        <div class=\"h-list\" style=\"width:").concat(_this2.style.content.width, "px; height:").concat(_this2.style.content.height, "px;\">\n          <img style=\"width:").concat(_this2.style.content.width, "px; height:").concat(_this2.style.content.width, "px;\"src=\"").concat(_this2.data.thumbnailArr[i], "\">\n          <div class=\"h-list-title\">").concat(_this2.data.titleArr[i], "</div>\n          <div class=\"h-list-desc\">").concat(_this2.data.descriptionArr[i], "</div>\n        </div>\n      </a>");
+        contentDom += "\n      <a href=\"".concat(_this2.data.linkArr[i], "\" style=\"margin:10px\">\n        <div class=\"h-list\" style=\"width:").concat(_this2.style.content.width, "px; height:").concat(_this2.style.content.height, "px;\">\n          <img class=\"h-list-image\" style=\"width:").concat(_this2.style.content.width, "px; height:").concat(_this2.style.content.width, "px;\"src=\"").concat(_this2.data.thumbnailArr[i], "\">\n          <div class=\"h-list-title\">").concat(_this2.data.titleArr[i], "</div>\n          <div class=\"h-list-desc\">").concat(_this2.data.descriptionArr[i], "</div>\n        </div>\n      </a>");
       });
       return contentDom;
     }
