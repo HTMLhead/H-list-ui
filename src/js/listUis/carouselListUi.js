@@ -130,7 +130,7 @@ class CarouselListUi {
         <div class="h-list" style="width:${this.style.content.width}px; height:${
         this.style.content.height
       }px;">
-          <img style="width:${this.style.content.width}px; height:${
+          <img class="h-list-image" style="width:${this.style.content.width}px; height:${
         this.style.content.width
       }px;"src="${this.data.thumbnailArr[i]}">
           <div class="h-list-title">${this.data.titleArr[i]}</div>
