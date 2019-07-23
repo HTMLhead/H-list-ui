@@ -122,6 +122,7 @@ class GridListUi {
   }
 
   moveSelectorLeft(element, contentWidth, contentHeight) {
+    const containerHeight = Number(this.style.container.height);
     if (this.currentIndex <= 0) return;
     this.currentIndex--;
     this.widthIndex--;
@@ -132,11 +133,10 @@ class GridListUi {
     const transformSizeX = (contentWidth + 20) * this.widthIndex;
     const transformSizeY = (contentHeight + 20) * heightIndex;
     this.moveSelector(transformSizeX, transformSizeY);
-    // 왼쪽 키보드 입력시의 이벤트 함수
-    // carouselListUi에서 selector움직인것 처럼
+    this.moveLayoutDown(transformSizeY, contentHeight, containerHeight);
   }
   moveSelectorRight(element, contentWidth, contentHeight) {
-    // 오른쪽 키보드 ''
+    const containerHeight = Number(this.style.container.height);
     if (this.currentIndex >= this.data.titleArr.length - 1) return;
     this.currentIndex++;
     this.widthIndex++;
@@ -147,48 +147,56 @@ class GridListUi {
     const transformSizeX = (contentWidth + 20) * this.widthIndex;
     const transformSizeY = (contentHeight + 20) * heightIndex;
     this.moveSelector(transformSizeX, transformSizeY);
+    this.moveLayoutUp(transformSizeY, contentHeight, containerHeight);
   }
   moveSelectorUp(element, contentWidth, contentHeight) {
-    const layout = document.querySelector(".h-list-grid-layout");
-    this.currentIndex -= Number(this.style.container.column);
+    const containerHeight = Number(this.style.container.height);
+    const column = Number(this.style.container.column);
+    this.currentIndex -= column;
     if (this.currentIndex < 0) {
-      this.currentIndex += Number(this.style.container.column);
+      this.currentIndex += column;
       return;
     }
-    const heightIndex = Math.floor(this.currentIndex / Number(this.style.container.column));
+    const heightIndex = Math.floor(this.currentIndex / column);
     const transformSizeX = (contentWidth + 20) * this.widthIndex;
     const transformSizeY = (contentHeight + 20) * heightIndex;
     this.moveSelector(transformSizeX, transformSizeY);
-    // 윗 키보드 입력시의 이벤트 함수
-    console.log(transformSizeY);
-    if (transformSizeY < Number(this.style.container.height)) {
-      layout.style.transform = `translateY(${-transformSizeY}px)`;
-    }
-    // contentHeight + transformY의 값이 container height보다 크다면
-    // transformY의 현재 값만큼
-    // layout의 transformY값 변경
+    this.moveLayoutDown(transformSizeY, contentHeight, containerHeight);
   }
   moveSelectorDown(element, contentWidth, contentHeight) {
-    const layout = document.querySelector(".h-list-grid-layout");
-    this.currentIndex += Number(this.style.container.column);
+    const containerHeight = Number(this.style.container.height);
+    const column = Number(this.style.container.column);
+    this.currentIndex += column;
     if (this.currentIndex > this.data.titleArr.length - 1) {
-      this.currentIndex -= Number(this.style.container.column);
+      this.currentIndex -= column;
       return;
     }
-    const heightIndex = Math.floor(this.currentIndex / Number(this.style.container.column));
+    const heightIndex = Math.floor(this.currentIndex / column);
     const transformSizeX = (contentWidth + 20) * this.widthIndex;
     const transformSizeY = (contentHeight + 20) * heightIndex;
     this.moveSelector(transformSizeX, transformSizeY);
-    // 아래 키보드 입력시의 이벤트 함수
-    console.log(transformSizeY);
-    if (Number(contentHeight + transformSizeY) > Number(this.style.container.height)) {
-      const height = Number(this.style.container.height) - (contentHeight + transformSizeY);
-      layout.style.transform = `translateY(${height}px)`;
+    this.moveLayoutUp(transformSizeY, contentHeight, containerHeight);
+  }
+  moveLayoutDown(transformSizeY, contentHeight, containerHeight) {
+    const layout = document.querySelector(".h-list-grid-layout");
+    const layoutOriginSize = Number(layout.style.transform.replace(/[^0-9-]/g, ""));
+    const isOverContainerHeight = transformSizeY - contentHeight < containerHeight;
+    const isTransformSizeOver = -layoutOriginSize < transformSizeY;
+    if (isOverContainerHeight) {
+      if (isTransformSizeOver) return;
+      layout.style.transform = `translateY(-${transformSizeY}px)`;
     }
-    // contentHeight만큼 아래로 맨 아래에서 또 아래로 이동햇을때
-    // contentHeight + transformY의 값이 container height보다 크다면
-    // conatinerHeight - (contentHeight + transformY)만큼
-    // layout의 transformY값 변경
+  }
+  moveLayoutUp(transformSizeY, contentHeight, containerHeight) {
+    const layout = document.querySelector(".h-list-grid-layout");
+    const layoutOriginSize = Number(layout.style.transform.replace(/[^0-9-]/g, ""));
+    const isOverContainerHeight = transformSizeY + contentHeight > containerHeight;
+    const isTransformSizeOver = -layoutOriginSize > transformSizeY - 2 * contentHeight;
+    if (isOverContainerHeight) {
+      if (isTransformSizeOver) return;
+      const height = transformSizeY + contentHeight - containerHeight;
+      layout.style.transform = `translateY(-${height}px)`;
+    }
   }
 }
 
