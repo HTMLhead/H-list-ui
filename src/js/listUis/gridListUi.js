@@ -1,30 +1,24 @@
 class GridListUi {
   constructor({ domElement, data, style }) {
     Object.assign(this, { domElement, data, style });
-    //인덱스 넘버 설정
     this.widthIndex = 0;
     this.currentIndex = 0;
+    this.link = data.linkArr[this.contentIndex];
     window.addEventListener("keydown", e => {
       if (
         e.key === "ArrowUp" ||
         e.key === "ArrowDown" ||
         e.key === "ArrowRight" ||
-        e.key === "ArrowLeft"
+        e.key === "ArrowLeft" ||
+        e.key === "Enter"
       ) {
         e.preventDefault();
+        this.link = data.linkArr[this.currentIndex];
       }
     });
   }
 
   render() {
-    // let resizeId;
-    // window.addEventListener("resize", function() {
-    //   clearTimeout(resizeId);
-    //   resizeId = setTimeout(doneResizing, 500);
-    // });
-    // function doneResizing() {
-    //   //설정한 인덱스 넘버 주어진 content width에 맞게 재설정 (아래로, 위로 눌렀을 때 추가될 index만큼)
-    // }
     const container = document.querySelector(this.domElement);
     container.appendChild(this.addLayout());
     const layout = document.querySelector(".h-list-grid-layout");
@@ -32,7 +26,6 @@ class GridListUi {
     this.addContainerStyle(container);
     this.addSelectorEvent(container);
     layout.innerHTML += this.addContentList();
-    // container.appendChild(this.addSelector());
   }
 
   addContentList() {
@@ -84,6 +77,9 @@ class GridListUi {
     }
   }
 
+  goLink() {
+    window.location.href = this.link;
+  }
   addSelector() {
     const selector = document.createElement("div");
     selector.style.width = `${Number(this.style.content.width) + 20}px`;
