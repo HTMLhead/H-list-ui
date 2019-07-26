@@ -15,7 +15,8 @@
   "main": "dist/listUi",
   "keywords": [
     "list",
-    "ui"
+    "ui",
+    "keypress"
   ],
   "homepage": "https://htmlhead.github.io/H-list-ui",
   "bugs": {
