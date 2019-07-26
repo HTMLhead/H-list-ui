@@ -2,24 +2,30 @@
   "name": "h-list-ui",
   "version": "1.0.0",
   "description": "simple javascript list-ui library",
-  "main": "index.js",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/MIT"
+    }
+  ],
   "scripts": {
     "build": "webpack --watch --config webpack.prod.js",
     "test": "jest --detectOpenHandles"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/HTMLhead/H-list-ui.git"
-  },
+  "main": "dist/listUi",
   "keywords": [
-    "list"
+    "list",
+    "ui"
   ],
-  "author": "HTMLhead",
-  "license": "MIT",
+  "homepage": "https://htmlhead.github.io/H-list-ui",
   "bugs": {
-    "url": "https://github.com/HTMLhead/H-list-ui/issues"
+    "url": "https://github.com/HTMLhead/H-list-ui/issues",
+    "email": "mrdoo309@gmail.com"
   },
-  "homepage": "https://github.com/HTMLhead/H-list-ui#readme",
+  "author": {
+    "name": "HTMLhead",
+    "email": "mrdoo309@gmail.com"
+  },
   "devDependencies": {
     "@babel/core": "^7.5.0",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
