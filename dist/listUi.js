@@ -153,7 +153,8 @@ function () {
     value: function addLayout() {
       var selector = document.createElement("div");
       selector.className = "h-list-layout";
-      selector.tabIndex = 0;
+      window.tabIndex = 0;
+      selector.tabIndex = 1;
       return selector;
     }
   }, {
@@ -167,6 +168,7 @@ function () {
       selector.style.backgroundColor = "#008000";
       selector.style.opacity = "0.5";
       selector.className = "h-list-selector";
+      selector.style.transition = "transform 0.1s linear";
       return selector;
     }
   }, {
@@ -196,6 +198,7 @@ function () {
     value: function addLayoutStyle(element) {
       element.style.display = "flex";
       element.style.outline = "none";
+      element.style.transition = "transform 0.1s linear";
       element.style.width = "".concat(this.wholeWidth, "px");
       return element;
     }
@@ -275,7 +278,7 @@ function () {
 
       var contentDom = "";
       this.data.titleArr.forEach(function (v, i) {
-        contentDom += "\n      <a href=\"".concat(_this2.data.linkArr[i], "\" style=\"margin:10px\">\n        <div class=\"h-list\" style=\"width:").concat(_this2.style.content.width, "px; height:").concat(_this2.style.content.height, "px;\">\n          <img style=\"width:").concat(_this2.style.content.width, "px; height:").concat(_this2.style.content.width, "px;\"src=\"").concat(_this2.data.thumbnailArr[i], "\">\n          <div class=\"h-list-title\">").concat(_this2.data.titleArr[i], "</div>\n          <div class=\"h-list-desc\">").concat(_this2.data.descriptionArr[i], "</div>\n        </div>\n      </a>");
+        contentDom += "\n      <a href=\"".concat(_this2.data.linkArr[i], "\" style=\"margin:10px\">\n        <div class=\"h-list\" style=\"width:").concat(_this2.style.content.width, "px; height:").concat(_this2.style.content.height, "px;\">\n          <img class=\"h-list-image\" style=\"width:").concat(_this2.style.content.width, "px; height:").concat(_this2.style.content.width, "px;\"src=\"").concat(_this2.data.thumbnailArr[i], "\">\n          <div class=\"h-list-title\">").concat(_this2.data.titleArr[i], "</div>\n          <div class=\"h-list-desc\">").concat(_this2.data.descriptionArr[i], "</div>\n        </div>\n      </a>");
       });
       return contentDom;
     }
