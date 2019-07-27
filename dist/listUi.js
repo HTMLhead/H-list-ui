@@ -287,7 +287,7 @@ function () {
 
       var contentDom = "";
       this.data.titleArr.forEach(function (v, i) {
-        contentDom += "\n      <a href=\"".concat(_this3.data.linkArr[i], "\" style=\"margin:10px\">\n        <div class=\"h-list\" style=\"width:").concat(_this3.style.content.width, "px; height:").concat(_this3.style.content.height, "px;\">\n          <img style=\"width:").concat(_this3.style.content.width, "px; height:").concat(_this3.style.content.width, "px; object-fit: cover;\" src=\"").concat(_this3.data.thumbnailArr[i], "\">\n          <div class=\"h-list-title\">").concat(_this3.data.titleArr[i], "</div>\n          <div class=\"h-list-desc\">").concat(_this3.data.descriptionArr[i], "</div>\n        </div>\n      </a>");
+        contentDom += "\n      <div style=\"margin:10px\">\n        <div class=\"h-list\" style=\"width:".concat(_this3.style.content.width, "px; height:").concat(_this3.style.content.height, "px;\">\n          <img style=\"width:").concat(_this3.style.content.width, "px; height:").concat(_this3.style.content.width, "px; object-fit: cover;\" src=\"").concat(_this3.data.thumbnailArr[i], "\">\n          <div class=\"h-list-title\">").concat(_this3.data.titleArr[i], "</div>\n          <div class=\"h-list-desc\">").concat(_this3.data.descriptionArr[i], "</div>\n        </div>\n      </div>");
       });
       return contentDom;
     }
@@ -342,28 +342,44 @@ function () {
       this.addContainerStyle(container);
       this.addSelectorEvent(container);
       layout.innerHTML += this.addContentList();
+      this.addTitleDescStyle();
+    }
+  }, {
+    key: "addTitleDescStyle",
+    value: function addTitleDescStyle() {
+      var _this2 = this;
+
+      var title = document.querySelectorAll(".h-list-grid-title");
+      var desc = document.querySelectorAll(".h-list-grid-desc");
+      title.forEach(function (v) {
+        v.style.fontSize = _this2.style.title.fontSize;
+        v.style.fontWeight = _this2.style.title.bold ? "bold" : "null";
+      });
+      desc.forEach(function (v) {
+        v.style.fontSize = _this2.style.description;
+      });
     }
   }, {
     key: "addContentList",
     value: function addContentList() {
-      var _this2 = this;
+      var _this3 = this;
 
       var contentDom = "";
       this.data.titleArr.forEach(function (v, i) {
-        contentDom += "\n      <a href=\"".concat(_this2.data.linkArr[i], "\" style=\"margin:10px\">\n        <div class=\"h-list\" style=\"width:").concat(_this2.style.content.width, "px; height:").concat(_this2.style.content.height, "px;\">\n          <img class=\"h-list-image\" style=\"width:").concat(_this2.style.content.width, "px; height:").concat(_this2.style.content.width, "px;\"src=\"").concat(_this2.data.thumbnailArr[i], "\">\n          <div>").concat(_this2.data.titleArr[i], "</div>\n          <div>").concat(_this2.data.descriptionArr[i], "</div>\n        </div>\n      </a>");
+        contentDom += "\n      <div style=\"margin:10px\">\n        <div class=\"h-list\" style=\"width:".concat(_this3.style.content.width, "px; height:").concat(_this3.style.content.height, "px;\">\n          <img style=\"width:").concat(_this3.style.content.width, "px; height:").concat(_this3.style.content.width, "px;object-fit: cover;\"src=\"").concat(_this3.data.thumbnailArr[i], "\">\n          <div class=\"h-list-grid-title\">").concat(_this3.data.titleArr[i], "</div>\n          <div class=\"h-list-grid-desc\">").concat(_this3.data.descriptionArr[i], "</div>\n        </div>\n      </div>");
       });
       return contentDom;
     }
   }, {
     key: "addSelectorEvent",
     value: function addSelectorEvent(element) {
-      var _this3 = this;
+      var _this4 = this;
 
       var contentWidth = this.style.content.width;
       var contentHeight = this.style.content.height;
       var containerWidth = this.style.container.width;
       element.addEventListener("keydown", function (e) {
-        return _this3.selectorEvt(e, element, contentWidth, contentHeight, containerWidth);
+        return _this4.selectorEvt(e, element, contentWidth, contentHeight, containerWidth);
       }); // 키보드 입력 이벤트 등록
     }
   }, {
