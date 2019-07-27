@@ -138,7 +138,7 @@ class CarouselListUi {
     let contentDom = "";
     this.data.titleArr.forEach((v, i) => {
       contentDom += `
-      <a href="${this.data.linkArr[i]}" style="margin:10px">
+      <div style="margin:10px">
         <div class="h-list" style="width:${this.style.content.width}px; height:${
         this.style.content.height
       }px;">
@@ -148,7 +148,7 @@ class CarouselListUi {
           <div class="h-list-title">${this.data.titleArr[i]}</div>
           <div class="h-list-desc">${this.data.descriptionArr[i]}</div>
         </div>
-      </a>`;
+      </div>`;
     });
 
     return contentDom;

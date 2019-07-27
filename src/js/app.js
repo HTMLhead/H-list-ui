@@ -102,6 +102,13 @@ document.addEventListener("DOMContentLoaded", () => {
         width: "200",
         height: "300",
       },
+      title: {
+        fontSize: "1.5rem",
+        bold: true,
+      },
+      description: {
+        fontSize: "0.8rem",
+      },
     },
   });
 });
