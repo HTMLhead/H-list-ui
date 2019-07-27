@@ -16,6 +16,18 @@ class CarouselListUi {
     this.addLayoutStyle(layout);
     this.addLayoutEvent(layout);
     layout.innerHTML += this.addContentList();
+    this.addTitleDescStyle();
+  }
+  addTitleDescStyle() {
+    const title = document.querySelectorAll(".h-list-title");
+    const desc = document.querySelectorAll(".h-list-desc");
+    title.forEach(v => {
+      v.style.fontSize = this.style.title.fontSize;
+      v.style.fontWeight = this.style.title.bold ? "bold" : "null";
+    });
+    desc.forEach(v => {
+      v.style.fontSize = this.style.description;
+    });
   }
 
   addLayout() {
@@ -130,9 +142,9 @@ class CarouselListUi {
         <div class="h-list" style="width:${this.style.content.width}px; height:${
         this.style.content.height
       }px;">
-          <img class="h-list-image" style="width:${this.style.content.width}px; height:${
+          <img style="width:${this.style.content.width}px; height:${
         this.style.content.width
-      }px;"src="${this.data.thumbnailArr[i]}">
+      }px; object-fit: cover;" src="${this.data.thumbnailArr[i]}">
           <div class="h-list-title">${this.data.titleArr[i]}</div>
           <div class="h-list-desc">${this.data.descriptionArr[i]}</div>
         </div>
