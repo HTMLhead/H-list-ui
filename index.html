@@ -6,17 +6,32 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>H-list</title>
     <link rel="shortcut icon" href="./favicon.ico" />
-    <link rel="stylesheet" type="text/css" href="./dist/listUi.css" />
+    <link rel="stylesheet" type="text/css" href="./src/assets/sass/main.css" />
   </head>
   <body>
     <header class="header">
       <div class="header-content">
-        <img src="./src/assets/img/logo.png" alt="logo" />
-        <div class="header-content-button">Type-A</div>
-        <div class="header-content-button">Type-B</div>
+        <a href="./" class="header-logo-container">
+          <img class="header-logo" src="./src/assets/img/logo.png" alt="logo" />
+        </a>
+        <div class="header-link-container">
+          <a href="" class="header-link">Example</a>
+          <a href="https://github.com/HTMLhead/H-list-ui" class="header-link">Github</a>
+        </div>
       </div>
     </header>
-    <div class="h-list-container"></div>
+    <div class="masthead">
+      <div class="introduce">
+        <div class="introduce-container">
+          <div class="introduce-text">LIGHT & SIMPLE</div>
+          <div class="introduce-text">KEY PRESS</div>
+          <div class="introduce-text">LIST UI</div>
+        </div>
+      </div>
+    </div>
+    <div class="h-list-container">
+      <div id="h-list"></div>
+    </div>
     <div class="h-list-grid-container"></div>
     <script src="dist/listUi.js"></script>
     <script src="./src/js/app.js" type="module"></script>
