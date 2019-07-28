@@ -126,7 +126,7 @@ function () {
     this.contentIndex = 0;
     this.overContentIndex = 0;
     this.link = data.linkArr[this.contentIndex];
-    this.wholeWidth = this.style.content.width * (this.data.titleArr.length + 1);
+    this.wholeWidth = (Number(this.style.content.width) + 20) * this.data.titleArr.length;
   }
 
   _createClass(CarouselListUi, [{
@@ -154,7 +154,7 @@ function () {
         v.style.fontWeight = _this.style.title.bold ? "bold" : "null";
       });
       desc.forEach(function (v) {
-        v.style.fontSize = _this.style.description;
+        v.style.fontSize = _this.style.description.fontSize;
       });
     }
   }, {
@@ -200,6 +200,7 @@ function () {
       element.style.height = "".concat(this.style.container.height, "px");
       element.style.position = "relative";
       element.style.overflow = "hidden";
+      element.style.border = this.style.border ? "".concat(this.style.border.size, "px solid ").concat(this.style.border.color) : null;
       return element;
     }
   }, {
@@ -244,7 +245,7 @@ function () {
         return;
       }
 
-      if (Math.abs(originSize) > wholeWidth - containerWidth && this.overContentIndex > 0) {
+      if (Math.abs(originSize) >= wholeWidth - containerWidth - 10 && this.overContentIndex > 0) {
         this.overContentIndex--;
         this.moveSelector((contentWidthSize + 20) * this.overContentIndex);
         return;
@@ -260,7 +261,7 @@ function () {
       var originSize = Number(element.style.transform.replace(/[^0-9-]/g, ""));
       var contentWidthSize = Number(contentWidth);
 
-      if (Math.abs(originSize) > wholeWidth - containerWidth) {
+      if (Math.abs(originSize) >= wholeWidth - containerWidth - 10) {
         this.selectorMoveChecker(contentWidthSize, containerWidth);
         return;
       }
