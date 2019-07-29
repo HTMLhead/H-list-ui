@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   listUi.createList({
     type: "typeB",
-    domElement: ".h-list-grid-container",
+    domElement: "#h-list-grid",
     data: {
       titleArr: titleArray,
       descriptionArr: descArray,
@@ -98,20 +98,24 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     style: {
       container: {
-        width: "700",
-        height: "700",
-        column: "3",
+        width: "auto",
+        height: "500",
+        column: "5",
       },
       content: {
-        width: "200",
-        height: "300",
+        width: "150",
+        height: "200",
       },
       title: {
-        fontSize: "1.5rem",
+        fontSize: "0.8rem",
         bold: true,
       },
       description: {
-        fontSize: "0.8rem",
+        fontSize: "0.3rem",
+      },
+      border: {
+        size: "1",
+        color: "#000",
       },
     },
   });
