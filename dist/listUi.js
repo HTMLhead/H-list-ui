@@ -357,7 +357,7 @@ function () {
         v.style.fontWeight = _this2.style.title.bold ? "bold" : "null";
       });
       desc.forEach(function (v) {
-        v.style.fontSize = _this2.style.description;
+        v.style.fontSize = _this2.style.description.fontSize;
       });
     }
   }, {
@@ -443,8 +443,9 @@ function () {
     value: function addContainerStyle(element) {
       element.tabIndex = 2;
       element.style.position = "relative";
-      element.style.width = "".concat(this.style.container.width, "px");
+      element.style.width = "".concat(Number(this.style.container.width) + 10, "px");
       element.style.height = "".concat(this.style.container.height, "px");
+      element.style.border = this.style.border ? "".concat(this.style.border.size, "px solid ").concat(this.style.border.color) : null;
       element.style.overflow = "hidden"; // container element에 Grid 속성을 추가 및 반응형 CSS style추가
     }
   }, {
