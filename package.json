@@ -2,27 +2,35 @@
   "name": "h-list-ui",
   "version": "1.0.0",
   "description": "simple javascript list-ui library",
-  "main": "index.js",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/MIT"
+    }
+  ],
   "scripts": {
     "build": "webpack --watch --config webpack.prod.js",
     "test": "jest --detectOpenHandles"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/HTMLhead/H-list-ui.git"
-  },
+  "main": "dist/listUi",
   "keywords": [
-    "list"
+    "list",
+    "ui",
+    "keypress"
   ],
-  "author": "HTMLhead",
-  "license": "MIT",
+  "homepage": "https://htmlhead.github.io/H-list-ui",
   "bugs": {
-    "url": "https://github.com/HTMLhead/H-list-ui/issues"
+    "url": "https://github.com/HTMLhead/H-list-ui/issues",
+    "email": "mrdoo309@gmail.com"
   },
-  "homepage": "https://github.com/HTMLhead/H-list-ui#readme",
+  "author": {
+    "name": "HTMLhead",
+    "email": "mrdoo309@gmail.com"
+  },
   "devDependencies": {
     "@babel/core": "^7.5.0",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.2.0",
     "@babel/preset-env": "^7.5.0",
     "babel-jest": "^24.8.0",
     "babel-loader": "^8.0.6",
@@ -31,6 +39,7 @@
     "dotenv": "^8.0.0",
     "jest": "^24.8.0",
     "mini-css-extract-plugin": "^0.7.0",
+    "node-sass": "^4.12.0",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "sass-loader": "^7.1.0",
     "terser-webpack-plugin": "^1.3.0",
@@ -38,7 +47,5 @@
     "webpack-cli": "^3.3.5",
     "webpack-merge": "^4.2.1"
   },
-  "dependencies": {
-    "node-sass": "^4.12.0"
-  }
+  "dependencies": {}
 }

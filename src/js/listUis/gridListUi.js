@@ -26,23 +26,35 @@ class GridListUi {
     this.addContainerStyle(container);
     this.addSelectorEvent(container);
     layout.innerHTML += this.addContentList();
+    this.addTitleDescStyle();
+  }
+  addTitleDescStyle() {
+    const title = document.querySelectorAll(".h-list-grid-title");
+    const desc = document.querySelectorAll(".h-list-grid-desc");
+    title.forEach(v => {
+      v.style.fontSize = this.style.title.fontSize;
+      v.style.fontWeight = this.style.title.bold ? "bold" : "null";
+    });
+    desc.forEach(v => {
+      v.style.fontSize = this.style.description.fontSize;
+    });
   }
 
   addContentList() {
     let contentDom = "";
     this.data.titleArr.forEach((v, i) => {
       contentDom += `
-      <a href="${this.data.linkArr[i]}" style="margin:10px">
+      <div style="margin:10px">
         <div class="h-list" style="width:${this.style.content.width}px; height:${
         this.style.content.height
       }px;">
-          <img class="h-list-image" style="width:${this.style.content.width}px; height:${
+          <img style="width:${this.style.content.width}px; height:${
         this.style.content.width
-      }px;"src="${this.data.thumbnailArr[i]}">
-          <div>${this.data.titleArr[i]}</div>
-          <div>${this.data.descriptionArr[i]}</div>
+      }px;object-fit: cover;"src="${this.data.thumbnailArr[i]}">
+          <div class="h-list-grid-title">${this.data.titleArr[i]}</div>
+          <div class="h-list-grid-desc">${this.data.descriptionArr[i]}</div>
         </div>
-      </a>`;
+      </div>`;
     });
 
     return contentDom;
@@ -111,8 +123,11 @@ class GridListUi {
   addContainerStyle(element) {
     element.tabIndex = 2;
     element.style.position = "relative";
-    element.style.width = `${this.style.container.width}px`;
+    element.style.width = `${Number(this.style.container.width) + 10}px`;
     element.style.height = `${this.style.container.height}px`;
+    element.style.border = this.style.border
+      ? `${this.style.border.size}px solid ${this.style.border.color}`
+      : null;
     element.style.overflow = "hidden";
     // container element에 Grid 속성을 추가 및 반응형 CSS style추가
   }

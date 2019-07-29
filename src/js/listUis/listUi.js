@@ -1,5 +1,3 @@
-import _h from "../utils/helper.js";
-
 import { CarouselListUi } from "./carouselListUi.js";
 import { GridListUi } from "./gridListUi.js";
 const listUi = {

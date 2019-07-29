@@ -1,0 +1,24 @@
+.code {
+  font-family: monospace;
+
+  &-pre {
+    margin-top: -1rem;
+    margin-bottom: -2.5rem;
+  }
+
+  &-container {
+    margin-top: 2rem;
+    width: 80%;
+    line-height: 1.2rem;
+    background-color: #fff;
+    padding: 2rem;
+  }
+}
+
+.hljs-attribute,
+.hljs-selector-tag,
+.hljs-string,
+.hljs-selector-class,
+.plaintext {
+  font-family: Consolas, Monaco, 'Andale Mono', monospace;
+}

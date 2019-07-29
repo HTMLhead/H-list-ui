@@ -4,7 +4,7 @@ class CarouselListUi {
     this.contentIndex = 0;
     this.overContentIndex = 0;
     this.link = data.linkArr[this.contentIndex];
-    this.wholeWidth = this.style.content.width * (this.data.titleArr.length + 1);
+    this.wholeWidth = (Number(this.style.content.width) + 20) * this.data.titleArr.length;
   }
 
   render() {
@@ -16,6 +16,18 @@ class CarouselListUi {
     this.addLayoutStyle(layout);
     this.addLayoutEvent(layout);
     layout.innerHTML += this.addContentList();
+    this.addTitleDescStyle();
+  }
+  addTitleDescStyle() {
+    const title = document.querySelectorAll(".h-list-title");
+    const desc = document.querySelectorAll(".h-list-desc");
+    title.forEach(v => {
+      v.style.fontSize = this.style.title.fontSize;
+      v.style.fontWeight = this.style.title.bold ? "bold" : "null";
+    });
+    desc.forEach(v => {
+      v.style.fontSize = this.style.description.fontSize;
+    });
   }
 
   addLayout() {
@@ -55,6 +67,9 @@ class CarouselListUi {
     element.style.height = `${this.style.container.height}px`;
     element.style.position = `relative`;
     element.style.overflow = `hidden`;
+    element.style.border = this.style.border
+      ? `${this.style.border.size}px solid ${this.style.border.color}`
+      : null;
     return element;
   }
 
@@ -91,7 +106,7 @@ class CarouselListUi {
     if (originSize >= 0) {
       return;
     }
-    if (Math.abs(originSize) > wholeWidth - containerWidth && this.overContentIndex > 0) {
+    if (Math.abs(originSize) >= wholeWidth - containerWidth - 10 && this.overContentIndex > 0) {
       this.overContentIndex--;
       this.moveSelector((contentWidthSize + 20) * this.overContentIndex);
       return;
@@ -104,7 +119,7 @@ class CarouselListUi {
   changeLayoutRight(element, contentWidth, containerWidth, wholeWidth) {
     const originSize = Number(element.style.transform.replace(/[^0-9-]/g, ""));
     const contentWidthSize = Number(contentWidth);
-    if (Math.abs(originSize) > wholeWidth - containerWidth) {
+    if (Math.abs(originSize) >= wholeWidth - containerWidth - 10) {
       this.selectorMoveChecker(contentWidthSize, containerWidth);
       return;
     }
@@ -126,17 +141,17 @@ class CarouselListUi {
     let contentDom = "";
     this.data.titleArr.forEach((v, i) => {
       contentDom += `
-      <a href="${this.data.linkArr[i]}" style="margin:10px">
+      <div style="margin:10px">
         <div class="h-list" style="width:${this.style.content.width}px; height:${
         this.style.content.height
       }px;">
-          <img class="h-list-image" style="width:${this.style.content.width}px; height:${
+          <img style="width:${this.style.content.width}px; height:${
         this.style.content.width
-      }px;"src="${this.data.thumbnailArr[i]}">
+      }px; object-fit: cover;" src="${this.data.thumbnailArr[i]}">
           <div class="h-list-title">${this.data.titleArr[i]}</div>
           <div class="h-list-desc">${this.data.descriptionArr[i]}</div>
         </div>
-      </a>`;
+      </div>`;
     });
 
     return contentDom;
