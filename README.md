@@ -1,8 +1,7 @@
 # H-list-ui
 
 ## Getting Started
-
-<head> tag안에 아래의 jsDelivr CDN을 통해서 만들어진 코드를 추가해서 사용해주세요.
+`<head>` tag안에 아래의 jsDelivr CDN을 통해서 만들어진 코드를 추가해서 사용해주세요.   
 
 ```html
 <script src="https://cdn.jsdelivr.net/gh/HTMLhead/H-list-ui/dist/listUi.min.js"></script>
@@ -72,7 +71,7 @@ listUi.createList({
 });
 ```
 
-###Type-B
+### Type-B
 
 ```javascript
 listUi.createList({
