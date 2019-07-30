@@ -63,8 +63,9 @@ listUi.createList({
       color: "#000", //border의 색상을 변경할 수 있습니다.
     },
     selector: {
-      color: "#008000",
-      opacity: "0.3",
+      // -require
+      color: "#008000", // selector의 색상을 정해줄 수 있습니다.
+      opacity: "0.3", // selector의 opacity를 결정할 수 있습니다.
     },
   },
 });
