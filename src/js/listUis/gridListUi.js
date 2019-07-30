@@ -4,6 +4,7 @@ class GridListUi {
     this.widthIndex = 0;
     this.currentIndex = 0;
     this.link = data.linkArr[this.contentIndex];
+    this.checkOption();
     window.addEventListener("keydown", e => {
       if (
         e.key === "ArrowUp" ||
@@ -14,6 +15,18 @@ class GridListUi {
       ) {
         e.preventDefault();
         this.link = data.linkArr[this.currentIndex];
+      }
+    });
+  }
+  checkOption() {
+    const titleArrLen = this.data.titleArr.length;
+    const descArrLen = this.data.descriptionArr.length;
+    const linkArrLen = this.data.linkArr.length;
+    const thumbnailArr = this.data.thumbnailArr.length;
+    const lengthArr = [titleArrLen, descArrLen, linkArrLen, thumbnailArr];
+    lengthArr.forEach(v => {
+      if (lengthArr[0] !== v) {
+        throw "dataArrays length is must be same";
       }
     });
   }
@@ -98,8 +111,8 @@ class GridListUi {
     selector.style.height = `${Number(this.style.content.height) + 20}px`;
     selector.style.position = `absolute`;
     selector.style.top = `0`;
-    selector.style.backgroundColor = `#008000`;
-    selector.style.opacity = `0.5`;
+    selector.style.backgroundColor = `${this.style.selector.color}`;
+    selector.style.opacity = `${this.style.selector.opacity}`;
     selector.className = "h-list-grid-selector";
     selector.style.transition = `transform 0.1s linear`;
     return selector;

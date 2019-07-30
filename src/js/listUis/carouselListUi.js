@@ -5,8 +5,20 @@ class CarouselListUi {
     this.overContentIndex = 0;
     this.link = data.linkArr[this.contentIndex];
     this.wholeWidth = (Number(this.style.content.width) + 20) * this.data.titleArr.length;
+    this.checkOption();
   }
-
+  checkOption() {
+    const titleArrLen = this.data.titleArr.length;
+    const descArrLen = this.data.descriptionArr.length;
+    const linkArrLen = this.data.linkArr.length;
+    const thumbnailArr = this.data.thumbnailArr.length;
+    const lengthArr = [titleArrLen, descArrLen, linkArrLen, thumbnailArr];
+    lengthArr.forEach(v => {
+      if (lengthArr[0] !== v) {
+        throw "dataArrays length is must be same";
+      }
+    });
+  }
   render() {
     const container = document.querySelector(this.domElement);
     container.appendChild(this.addLayout());
