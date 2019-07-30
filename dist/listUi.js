@@ -127,9 +127,24 @@ function () {
     this.overContentIndex = 0;
     this.link = data.linkArr[this.contentIndex];
     this.wholeWidth = (Number(this.style.content.width) + 20) * this.data.titleArr.length;
+    this.checkOption();
   }
 
   _createClass(CarouselListUi, [{
+    key: "checkOption",
+    value: function checkOption() {
+      var titleArrLen = this.data.titleArr.length;
+      var descArrLen = this.data.descriptionArr.length;
+      var linkArrLen = this.data.linkArr.length;
+      var thumbnailArr = this.data.thumbnailArr.length;
+      var lengthArr = [titleArrLen, descArrLen, linkArrLen, thumbnailArr];
+      lengthArr.forEach(function (v) {
+        if (lengthArr[0] !== v) {
+          throw "dataArrays length is must be same";
+        }
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       var container = document.querySelector(this.domElement);
@@ -418,8 +433,8 @@ function () {
       selector.style.height = "".concat(Number(this.style.content.height) + 20, "px");
       selector.style.position = "absolute";
       selector.style.top = "0";
-      selector.style.backgroundColor = "#008000";
-      selector.style.opacity = "0.5";
+      selector.style.backgroundColor = "".concat(this.style.selector.color);
+      selector.style.opacity = "".concat(this.style.selector.opacity);
       selector.className = "h-list-grid-selector";
       selector.style.transition = "transform 0.1s linear";
       return selector; //selector생성 함수

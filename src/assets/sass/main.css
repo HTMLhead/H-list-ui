@@ -267,3 +267,23 @@ table {
 .hljs-selector-class,
 .plaintext {
   font-family: Consolas, Monaco, 'Andale Mono', monospace; }
+
+.data-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5rem;
+  background-color: #fff;
+  height: 6rem;
+  align-items: center; }
+  .footer-text {
+    margin: 1rem;
+    font-size: "1.3rem";
+    display: block;
+    color: #7d7d7d; }
+  .footer-nickname-link {
+    color: #7d7d7d; }

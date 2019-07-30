@@ -83,7 +83,11 @@ document.addEventListener("DOMContentLoaded", () => {
       },
       border: {
         size: "1",
-        color: "#000",
+        color: "#fff",
+      },
+      selector: {
+        color: "#008000",
+        opacity: "0.3",
       },
     },
   });
@@ -115,7 +119,11 @@ document.addEventListener("DOMContentLoaded", () => {
       },
       border: {
         size: "1",
-        color: "#000",
+        color: "#fff",
+      },
+      selector: {
+        color: "#008000",
+        opacity: "0.3",
       },
     },
   });
