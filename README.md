@@ -8,7 +8,7 @@
 <script src="https://cdn.jsdelivr.net/gh/HTMLhead/H-list-ui/dist/listUi.min.js"></script>
 ```
 
-혹은 [다운로드]()받아서 '/{압축해제한 폴더}/dist/listUi.min.js'를 script태그로 받아사용해 주세요.
+혹은 [다운로드](https://github.com/HTMLhead/H-list-ui/archive/master.zip)받아서 '/{압축해제한 폴더}/dist/listUi.min.js'를 script태그로 받아사용해 주세요.
 
 ```html
 <script src="{folder}/dist/listUi.min.js"></script>
